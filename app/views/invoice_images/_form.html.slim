@@ -1,0 +1,11 @@
+.row
+  .col.s12
+    = simple_form_for @invoice_image do |f|
+      .input-field.col.s6
+        = f.input :name
+      .file-field.input-field.col.s6
+        = f.input :image, as: :file, placeholder: false, input_html: { class: 'file-field' }
+      .col.s12.right-aling
+        .section
+          = f.submit class: 'btn'
+          = link_to 'Cancel', invoice_images_path, class: 'btn orange'

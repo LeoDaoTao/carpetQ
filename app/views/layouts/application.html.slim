@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title Carpet Cleaner App
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false
+    link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
+    = csrf_meta_tags
+    meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    meta name="apple-mobile-web-app-capable" content="yes"
+    meta name="mobile-web-app-capable" content="yes"
+    = render 'favicon'
+  body
+    = render 'layouts/partials/nav'
+    main
+      = yield :tabs
+      .container
+        = render 'layouts/partials/flashes'
+        = yield
+    = javascript_include_tag 'application', 'data-turbolinks-track' => false
+    = Gon::Base.render_data

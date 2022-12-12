@@ -1,0 +1,25 @@
+br
+.row
+  .col.s12
+    = simple_form_for @label do |f|
+      .input-field.col.s12
+        = f.input :name
+      .input-field.col.s12
+        = f.input :top_margin, as: :decimal, html5: false
+      .input-field.col.s12
+        = f.input :bottom_margin, as: :decimal, html5: false
+      .input-field.col.s12
+        = f.input :left_margin, as: :decimal, html5: false
+      .input-field.col.s12
+        = f.input :right_margin, as: :decimal, html5: false
+      .input-field.col.s12
+        = f.input :columns, as: :decimal, html5: false
+      .input-field.col.s12
+        = f.input :rows, as: :decimal, html5: false
+      .input-field.col.s12
+        = f.input :column_gutter, as: :decimal, html5: false
+      .input-field.col.s12
+        = f.input :row_gutter, as: :decimal, html5: false
+      .col.s12.right-align
+        .section
+          = f.submit class: "btn waves-effect waves-light"

@@ -1,0 +1,43 @@
+header
+  nav
+    .container
+      h1.brand-logo = @page_name
+      ul#slide-out.side-nav.fixed.leftside-navigation.lime.accent-2
+        li.nav-user-details.valign-wrapper.green.darken-2
+          = image_tag 'logo'
+        - if current_user.present?
+          li
+            = link_to 'Dashboard', root_path
+          li
+            = link_to 'Calendar', events_path
+          li
+            = link_to 'Customers', customers_path
+          li
+            = link_to 'Invoices', invoices_path
+          li
+            = link_to 'Notes', notes_path
+          li
+            = link_to 'Reminders', reminders_path
+          li.no-padding
+            ul.collapsible.collapsible-accordion
+              li
+                a.collapsible-header Settings
+                .collapsible-body
+                  ul
+                    li = link_to 'Users', users_path
+                    li = link_to 'Invoice Files', invoice_images_path
+                    li = link_to 'Services', services_path
+                    li = link_to 'Discounts', discounts_path
+                    li = link_to 'General Settings', settings_path
+          li.no-padding
+            ul.collapsible.collapsible-accordion
+              li
+                a.collapsible-header Reports
+                .collapsible-body
+                  ul
+                    li = link_to 'Discount Report', '#'
+                    li = link_to 'Address Labels', labels_path
+          li
+            = link_to("Logout", session_path, method: :delete)
+      a.button-collapse data-activates="slide-out" href="#"
+        i.material-icons menu

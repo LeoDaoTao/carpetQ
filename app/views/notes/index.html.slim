@@ -1,0 +1,19 @@
+.row
+  .col.s12
+    table.highlight.bordered
+      thead
+        tr
+          th Note
+          th Status
+          th Date
+          th &nbsp;
+      tbody
+        - @notes.each do |note|
+          tr
+            td = note.note_text
+            td = note.status
+            td = note.created_at.strftime("%b %e, %Y")
+            td = link_to "Edit", edit_note_path(note)
+    .fixed-action-btn style="bottom: 45px; right: 24px;"
+      a.btn-floating.btn-large.waves-effect.waves-light.red href="#{new_note_path}"
+        i.material-icons add

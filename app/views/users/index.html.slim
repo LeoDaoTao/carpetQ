@@ -1,0 +1,19 @@
+.row
+  .col.s12
+    table.highlight.bordered
+      thead
+        tr
+          th Name
+          th Login
+          th &nbsp;
+      tbody
+        - @users.each do |user|
+          tr
+            td = user.name
+            td = user.login
+            td = link_to "Edit", edit_user_path(user)
+    .fixed-action-btn style="bottom: 45px; right: 24px;"
+      a.btn-floating.btn-large.waves-effect.waves-light.red href="#{new_user_path}"
+        i.material-icons add
+
+

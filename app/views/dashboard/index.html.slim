@@ -1,0 +1,39 @@
+h4 Today's Appointments
+.row
+  .col.s12
+    - unless @events.empty?
+      - @events.each do |event|
+        .row
+          .card.col.s12.l8
+            .card-content
+              p = "#{event.time_start.strftime("%I:%M%P")} - #{event.time_end.strftime("%I:%M%P")}"
+              span.card-title = link_to(render_name_or_company(event), edit_event_path(event.id))
+              address = render_address event
+              - if event.customer.present?
+                - event.customer.phones.each do |phone|
+                  p
+                    = tel_to(number_to_phone(phone.number, area_code: true))
+                    =< phone.label
+                    =< is_textable?(phone.textable?) 
+            - if event.customer.present?
+              .card-action
+                = link_to_create_or_edit_invoice(event)
+    - else
+      p There are no scheduled events for today.
+h4 Phone Reminders
+.row
+  .col.s12
+    - unless @phone_reminders.empty?
+      - @phone_reminders.each do |reminder|
+        .row
+          .card.col.s12.l8
+            .card-content
+              span.card-title = "#{reminder.customer.first_name} #{reminder.customer.last_name} #{reminder.customer.company_name}"
+              - reminder.customer.phones.each do |phone|
+                p
+                  = tel_to(number_to_phone(phone.number, area_code: true))
+                  =< phone.label
+                  =< is_textable?(phone.textable?) 
+    - else
+      p There are no scheduled phone reminders for today.
+

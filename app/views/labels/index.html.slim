@@ -1,0 +1,15 @@
+.row
+  .col.s12
+    table.highlight.bordered
+      thead
+        tr
+          th Label Name
+          th 
+      tbody
+        - @labels.each do |label|
+          tr
+            td = link_to label.name, edit_label_path(label)
+            td = link_to 'Create Label', address_label_path(label: label.id)
+    .fixed-action-btn style="bottom: 45px; right: 24px;"
+      a.btn-floating.btn-large.waves-effect.waves-light.red href="#{new_label_path}"
+        i.material-icons add

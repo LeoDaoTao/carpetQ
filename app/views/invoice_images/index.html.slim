@@ -1,0 +1,19 @@
+.row
+  .col.s12
+    table.highlight.bordered
+      thead
+        tr
+          th Image
+          th Name
+          th
+          th
+      tbody
+        - @invoice_images.each do |image|
+          tr
+            td = image_tag image.image.url(:small)
+            td = image.name
+            td = link_to 'Edit', edit_invoice_image_path(image)
+            td = link_to 'Delete', invoice_image_path(image), method: :delete, data: { confirm: 'Are you sure?' }
+    .fixed-action-btn style="bottom: 45px; right: 24px;"
+      a.btn-floating.btn-large.waves-effect.waves-light.red href="#{new_invoice_image_path}"
+        i.material-icons add

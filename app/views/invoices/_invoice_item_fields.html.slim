@@ -1,0 +1,16 @@
+.nested-fields
+  .input-field.col.s3
+    = f.input :service_id, collection: @services, include_blank: false,
+      input_html: { class: 'material-select'}
+  .input-field.col.s5
+    = f.input :description
+  .input-field.col.s2
+    = f.input :dimensions
+  .input-field.col.s1
+    = f.input :unit_cost, as: :decimal, html5: false, label: 'Unit',
+      input_html: { pattern: '[0-9]*' }
+  .input-field.col.s1
+    = f.input :total_cost, as: :decimal, html5: false, label: 'Total',
+      input_html: { class: 'total-cost', type: 'number', inputmode: 'numeric', pattern: '[0-9]*' }
+  .col.s12.right-align
+    = link_to_remove_association 'REMOVE ITEM', f, class: 'red-text'

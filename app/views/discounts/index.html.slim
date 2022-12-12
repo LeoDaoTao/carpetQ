@@ -1,0 +1,15 @@
+.row
+  .col.s12
+    table.highlight.bordered
+      thead
+        tr
+          th Discount Name
+          th Discount Value
+      tbody
+        - @discounts.each do |discount|
+          tr
+            td = link_to discount.name, edit_discount_path(discount)
+            td = discount.value
+    .fixed-action-btn style="bottom: 45px; right: 24px;"
+      a.btn-floating.btn-large.waves-effect.waves-light.red href="#{new_discount_path}"
+        i.material-icons add

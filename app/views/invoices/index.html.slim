@@ -1,0 +1,26 @@
+.row
+  .col.s12
+    table.highlight.bordered
+      thead
+        tr
+          th Invoice #
+          th Customer
+          th Total
+          th Date
+          th PDF
+          th Email
+          th Edit
+          th Delete
+      tbody
+        - @invoices.each do |invoice|
+          tr
+            td = invoice.id
+            td = invoice.customer.title
+            td = number_to_currency(invoice.total) if invoice.total.present?
+            td = invoice.date.stamp('01/05/10')
+            td = link_to 'View', invoice_path(invoice, format: :pdf)
+            td = (link_to 'Email', email_invoice_path(invoice.id)) if invoice.customer.emailable?
+            td = link_to 'Edit', edit_invoice_path(invoice)
+            td = link_to 'Delete', invoice, method: :delete, data: { confirm: 'Are you sure?' }
+    .col.s12
+      = paginate @invoices

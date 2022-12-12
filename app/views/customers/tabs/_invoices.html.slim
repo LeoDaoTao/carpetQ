@@ -1,0 +1,22 @@
+#invoices
+  - if @invoices.present?
+    table.highlight.bordered
+      thead
+        tr
+          th Invoice#
+          th Date
+          th Total
+          th PDF
+          th Edit
+          th Delete
+      tbody
+        - @invoices.each do |invoice|
+          tr
+            td = invoice.id
+            td = invoice.date.stamp('Jan 9, 2010')
+            td = number_to_currency invoice.total
+            td = link_to 'View', invoice_path(invoice, format: :pdf)
+            td = link_to 'Edit', edit_invoice_path(invoice)
+            td = link_to 'Delete', invoice, method: :delete, data: { confirm: 'Are you sure?' }
+  - else
+    h5 This customer has no Invoices

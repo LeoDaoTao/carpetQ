@@ -1,0 +1,21 @@
+#reminders
+  - if @reminders.present?
+    table.highlight.bordered
+      thead
+        tr
+          th Date
+          th Method
+          th Completed
+          th Edit
+      tbody
+        - @reminders.each do |reminder|
+          tr
+            td = reminder.date.stamp 'Jan 5, 2010'
+            td = reminder.reminder_method 
+            td = reminder.completed
+            td = link_to 'Edit/Delete', edit_reminder_path(reminder)
+  - else
+    h5 This customer has no Reminders
+  .fixed-action-btn style="bottom: 45px; right: 24px;"
+    a.btn-floating.btn-large.waves-effect.waves-light.red href="#{new_reminder_path(customer_id: @customer.id)}"
+      i.material-icons add

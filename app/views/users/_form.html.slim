@@ -1,0 +1,15 @@
+br
+.row
+  .col.s12
+    = simple_form_for @user do |f|
+      .input-field.col.s6
+        = f.input :name, required: false
+      .input-field.col.s6
+        = f.input :login, required: false
+      .input-field.col.s6
+        = f.input :password
+      .input-field.col.s6
+        = f.input :password_confirmation
+      .col.s12.right-align
+        .section
+          = f.submit 'Save User', class: "btn waves-effect waves-light"

@@ -1,0 +1,16 @@
+br
+.row
+  .col.s12
+    = form_tag session_path do
+      .row
+        .input-field.col.s6
+          = label_tag :login, nil, class: 'login-label active'
+          = text_field_tag :login, nil, autocapitalize: :off, autocorrect: :off, autocomplete: :off
+      .row
+        .input-field.col.s6
+          = label_tag :password, nil, class: 'login-label active'
+          = password_field_tag :password, nil, autocomplete: :off
+      .col.s6.right-align
+        .section
+          = submit_tag 'Login', class: "btn waves-effect waves-light"
+

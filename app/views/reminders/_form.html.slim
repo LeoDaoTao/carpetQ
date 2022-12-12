@@ -1,0 +1,21 @@
+br
+= render 'layouts/partials/errors', object: @reminder
+.row
+  .col.s12
+    = simple_form_for @reminder do |f|
+      - unless @reminder.persisted?
+        = hidden_field_tag 'reminder[customer_id]', @customer_id
+      .input-field.col.s12.m4
+        = f.input :date, input_html: { class: 'datepicker', value: select_date(f, :date) }, as: :string
+      .input-field.col.s12.m4
+        = f.input :reminder_method, collection: Reminder.reminder_methods, include_blank: false
+      - if @reminder.persisted?
+        .input-field.col.s12.m4
+          = f.input :completed
+      .col.s12.right-align
+        .section
+          = f.submit class: "btn waves-effect waves-light"
+          = link_to 'Cancel', :back, class: 'btn orange'
+        - if @reminder.persisted?
+          .section
+            = link_to 'Delete Reminder', reminder_path(@reminder), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn red'

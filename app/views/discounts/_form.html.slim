@@ -1,0 +1,13 @@
+br
+.row
+  .col.s12
+    = simple_form_for @discount do |f|
+      .input-field.col.s12
+        = f.input :name
+      .input-field.col.s12
+        = f.input :value, as: :decimal, html5: false
+      .col.s12.right-align
+        = f.submit class: 'btn wave-effect'
+      .col.s12.right-align.delete-btn-section
+        - if @discount.persisted?
+          = link_to 'Delete Discount', discount_path(@discount), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn red'

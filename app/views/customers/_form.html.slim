@@ -1,0 +1,50 @@
+br
+.row
+  .col.s12
+    = simple_form_for @customer, html: { class: 'disable-submit' } do |f|
+      = hidden_field_tag :start_time, params[:start_time]
+      = hidden_field_tag :end_time, params[:end_time]
+      h5.col.s12 Customer Information
+      .input-field.col.s6
+        = f.input :first_name
+      .input-field.col.s6
+        = f.input :last_name
+      .input-field.col.s12
+        = f.input :company_name
+      .input-field.col.s12
+        = f.input :email
+      h5.col.s12 Main Address
+      .input-field.col.s12
+        = f.input :address
+      .input-field.col.s6
+        = f.input :city
+      .input-field.col.s2
+        = f.input :state, input_html: {value: f.object.state || 'CA'}
+      .input-field.col.s4
+        = f.input :zip
+      h5.col.s12 Phones
+      #phones.col.s12
+        = f.simple_fields_for :phones do |phone|
+          = render 'phone_fields', f: phone
+        .links
+          = link_to_add_association 'add phone', f, :phones, class: 'btn'
+      .row
+      h5.col.s12 Additional Addresses
+      #addresses.col.s12
+        = f.simple_fields_for :addresses do |address|
+          = render 'address_fields', f: address
+        .links
+          = link_to_add_association 'add address', f, :addresses, class: 'btn'
+      .row
+      h5.col.s12 Customer Notes
+      .input-field.col.s12
+        = f.input :note, input_html: { class: 'materialize-textarea' }
+      .col.s12.right-align
+        .section
+          - if @return_to_event
+            = f.submit 'Save Customer & Go Back to Appointment', class: "btn waves-effect waves-light"
+          - else
+            = f.submit class: "btn waves-effect waves-light"
+          = link_to 'Cancel', customers_path, class: 'btn orange'
+  .row
+  .row

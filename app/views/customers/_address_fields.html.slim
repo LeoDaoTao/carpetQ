@@ -1,0 +1,14 @@
+.row
+  .nested-fields
+    .input-field.col.s12
+      = f.input :label
+    .input-field.col.s12
+      = f.input :address
+    .input-field.col.s3
+      = f.input :city
+    .input-field.col.s3
+      = f.input :state, label_html: { class: 'active'}
+    .input-field.col.s3
+      = f.input :zip
+    .col.s12
+      = link_to_remove_association "remove address", f, class: 'btn orange'

@@ -1,0 +1,39 @@
+.mdl-color--white.mdl-shadow--2dp.mdl-cell.mdl-cell--12-col.mdl-grid
+  table.mdl-data-table.mdl-js-data-table.mdl-data-table--selectable.mdl-shadow--2dp
+    thead
+      tr
+        th.mdl-data-table__cell--non-numeric Date
+        th.mdl-data-table__cell--non-numeric Customer Name
+        th.mdl-data-table__cell--non-numeric Message
+        th.mdl-data-table__cell--non-numeric Status
+      tbody
+        tr
+          td.mdl-data-table__cell--non-numeric Today
+          td.mdl-data-table__cell--non-numeric Elon Musk
+          td.mdl-data-table__cell--non-numeric Appointment Reminder
+          td.mdl-data-table__cell--non-numeric Delivered
+        tr
+          td.mdl-data-table__cell--non-numeric Yesterday
+          td.mdl-data-table__cell--non-numeric Bill Gates
+          td.mdl-data-table__cell--non-numeric Appointment Reminder
+          td.mdl-data-table__cell--non-numeric Delivered
+        tr
+          td.mdl-data-table__cell--non-numeric 11/20/15
+          td.mdl-data-table__cell--non-numeric Richard Smith
+          td.mdl-data-table__cell--non-numeric Appointment Reminder
+          td.mdl-data-table__cell--non-numeric Delivered
+        tr
+          td.mdl-data-table__cell--non-numeric 11/19/15
+          td.mdl-data-table__cell--non-numeric Ann Boone
+          td.mdl-data-table__cell--non-numeric Appointment Reminder
+          td.mdl-data-table__cell--non-numeric Not Delivered
+.mdl-color--white.mdl-shadow--2dp.mdl-cell.mdl-cell--6-col.mdl-grid
+  = form_tag({controller: "messages", action: "create"}, method: "post") do
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+      input.mdl-textfield__input type="text" id="phone" name="phone"
+      label.mdl-textfield__label for="phone" Phone
+    .mdl-textfield.mdl-js-textfield
+      textarea.mdl-textfield__input type="text" rows="3" id="message" name="message"
+      label.mdl-textfield__label for="message" Message...
+    br
+    = submit_tag 'Send Message', class: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect'

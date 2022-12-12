@@ -1,0 +1,10 @@
+//= require jquery
+//= require jquery.turbolinks
+//= require jquery_ujs
+//= require cocoon
+//= require moment
+//= require fullcalendar
+//= require materialize-sprockets
+//= require turbolinks
+//= require twitter/typeahead.min
+//= require_tree .

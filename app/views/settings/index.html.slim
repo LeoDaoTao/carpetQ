@@ -1,0 +1,14 @@
+.row
+  .col.s12
+    table.highlight.bordered
+      thead
+        tr
+          th Setting Name
+          th Setting Value
+          th
+      tbody
+        - @settings.each do |setting|
+          tr
+            td = setting.var
+            td = truncate setting_value(setting).to_s
+            td = link_to "Edit", edit_setting_path(setting)

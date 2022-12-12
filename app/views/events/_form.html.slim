@@ -1,0 +1,35 @@
+br
+.row
+  .col.s12
+    = simple_form_for @event do |f|
+      = hidden_field_tag :customer_id, get_customer_id(f, params[:customer_id])
+      .input-field.col.s12
+        = text_field_tag :search, @customer_title, class: 'typeahead', placeholder: 'Customer', autofocus: !@customer_title.present?
+      - unless @event.persisted?
+        .col.s12
+          = link_to('Add Customer', new_customer_path(start_time: @start_time, end_time: @end_time), class: 'btn right', id: 'add-customer-link')
+      .col.s6
+        = f.input :description
+      .col.s6
+        = f.input :city
+      .col.s6
+        label Appointment Date
+        = f.input :date, label: false, input_html: { class: 'datepicker', value: select_date(f, @start_time)}, as: :string
+      .col.s3
+        label Start Time
+        = f.input :time_start, label: false, collection: Event::WORK_TIME, include_blank: false, selected: select_time_start(f, @start_time)
+      .col.s3
+        label End Time
+        = f.input :time_end, label: false, collection: Event::WORK_TIME, include_blank: false, selected: select_time_end(f, @end_time)
+      .col.s12
+        label Color
+        = f.input :color, label: false, collection: Event::EVENT_COLORS, label_method: :last, value_method: :first, as: :materialize_radio_buttons_inline, input_html: { class: 'event-color'}
+      .input-field.col.s12
+        = f.input :note, input_html: { class: 'materialize-textarea' }
+      .col.s12.right-align
+        .section
+          = f.submit 'Schedule Appointment', class: 'btn waves-effect waves-light'
+          = link_to 'Cancel', events_path, class: 'btn orange'
+      .col.s12.right-align.delete-btn-section
+        - if @event.persisted? && @event.deletable?
+          = link_to 'Delete Appointment', event_path(@event), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn red'

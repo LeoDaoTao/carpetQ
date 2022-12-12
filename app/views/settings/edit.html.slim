@@ -1,0 +1,12 @@
+.row
+  .col.s12
+    = simple_form_for @setting do |f|
+      .input-field.col.s12
+        - if f.object.var =~ /pass/i
+          = f.input :value, as: :password
+        - else
+          = f.input :value, input_html: { class: 'materialize-textarea' }
+      .col.s12.right-align
+        .section
+          = link_to 'Cancel', settings_path, class: "btn orange"
+          = f.submit class: "btn waves-effect waves-light"

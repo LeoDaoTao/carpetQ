@@ -1,0 +1,88 @@
+br
+.row
+  .col.s12
+    = simple_form_for @invoice, html: { class: 'disable-submit' } do |f|
+      = f.input :customer_id, as: :hidden, input_html: { value: @event.customer.id }, wrapper: false
+      = f.input :event_id, as: :hidden, input_html: { value: @event.id }, wrapper: false
+      = f.input :service_time, as: :hidden, input_html: { value: @event.time_start }, wrapper: false
+
+      .col.s12.m6
+        h5.col.s12.orange-text = @event.customer.title
+        .col.s12
+          = @event.customer.address
+        .col.s12
+          = "#{@event.customer.city}, #{@event.customer.state} #{@event.customer.zip}"
+        .col.s12
+          | &nbsp;
+        .col.s12
+          label Phone(s)
+        - @event.customer.phones.each do |phone|
+          .col.s12
+            = "#{number_to_phone(phone.number, area_code: true)} #{phone.label}"
+        .col.s12
+          | &nbsp;
+        .col.s6
+          label Service Date
+        .col.s6
+          label Service Time
+        .col.s6
+          = f.input :date, input_html: { class: 'datepicker', value: select_date(f, :date) }, as: :string, label: false
+        .col.s6
+          br
+          = @event.time_start.stamp('8:00am')
+      .col.m6.hide-on-small-only
+      - unless @invoice.persisted?
+        .col.s12
+          .section
+            .input-field.col.s12.m3.l3
+              = f.input :reminder_date, input_html: { class: 'datepicker', value: select_reminder_date }, as: :string
+            .input-field.col.s3.m1.l1
+              = button_tag '3m', class: 'btn btn-lower btn-small', id: 'reminder-3m'
+            .input-field.col.s3.m1.l1
+              = button_tag '6m', class: 'btn btn-lower btn-small', id: 'reminder-6m'
+            .input-field.col.s3.m1.l1
+              = button_tag '1y', class: 'btn btn-lower btn-small', id: 'reminder-1y'
+            .row.hide-on-med-and-up
+            .input-field.col.s3.m2.l2
+              = check_box_tag :reminder_txt
+              = label_tag :reminder_txt, 'TXT'
+            .input-field.col.s3.m2.l2
+              = check_box_tag :reminder_email
+              = label_tag :reminder_email, 'Email'
+            .input-field.col.s3.m2.l2
+              = check_box_tag :reminder_phone
+              = label_tag :reminder_phone, 'Phone'
+      .col.s12
+        #invoice-items
+          = f.simple_fields_for :invoice_items do |item|
+            = render 'invoice_item_fields', f: item
+          .col.s12.right
+            = link_to_add_association 'ADD ITEM', f, :invoice_items, class: 'add-item right-align'
+      .col.s6
+        .checklist.s12
+          h5 Checklist
+          ul
+            li Share Contact
+            li Leave Card
+            li Ask for Review
+      .col.s6
+        .input-field.col.s9
+          p.right-align Sub Total: 
+        .input-field.col.s3
+          = text_field_tag 'sub-total', nil, class: 'right-align'
+        .input-field.col.s9
+          p.right-align Discount: 
+        .col.s3
+          = f.input :discount_id, label: false,
+            collection: Discount.all.order(:value).map{ |i| [i.name, i.id, { 'data-discount' => i.value }]}
+        .input-field.col.s9
+          p.right-align Grand Total: 
+        .input-field.col.s3
+          = f.input :total, label: false, as: :decimal, html5: false,
+            input_html: { class: 'right-align' }
+      .input-field.col.s12
+        = f.input :note, input_html: { class: 'materialize-textarea' }
+      .col.s12.right-align
+        .section
+          = f.submit class: 'btn'
+          = link_to 'Cancel', invoices_path, class: 'btn orange'

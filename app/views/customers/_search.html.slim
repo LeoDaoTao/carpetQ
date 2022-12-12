@@ -1,0 +1,7 @@
+= form_tag customers_path, method: :get do
+  .section
+    .input-field.col.s12.m6.l7
+      = text_field_tag :search, params[:search], placeholder: "Find Customer"
+    .input-field.col.s12.m6.l5
+      button.btn type="submit" Search
+      a.btn.orange href="#{customers_path}" Cancel

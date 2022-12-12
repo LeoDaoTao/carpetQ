@@ -1,0 +1,25 @@
+.row
+  = render 'search'
+.row
+  .col.s12
+    table.highlight.bordered
+      thead
+        tr
+          th Last Name
+          th First Name
+          th Company Name
+          th Phone
+          th &nbsp;
+      tbody
+        - @customers.each do |customer|
+          tr
+            td = link_to customer.last_name, customer  if customer.last_name.present?
+            td = link_to customer.first_name, customer if customer.first_name.present?
+            td = link_to(truncate(customer.company_name, length: 25, separator: ' '), customer) unless customer.company_name.nil?
+            td = number_to_phone(customer.phones.first.number , area_code: true) unless customer.phones.empty?
+            td = link_to "Edit", edit_customer_path(customer)
+    .col.s12
+      = paginate @customers
+    .fixed-action-btn style="bottom: 45px; right: 24px;"
+      a.btn-floating.btn-large.waves-effect.waves-light.red href="#{new_customer_path}"
+        i.material-icons add

@@ -1,0 +1,16 @@
+#appointments
+  - if @events.present?
+    table.highlight.bordered
+      thead
+        tr
+          th Date
+          th Time
+          th &nbsp;
+      tbody
+        - @events.each do |event|
+          tr
+            td = event.date.stamp('Jan 9, 2010')
+            td #{event.time_start.stamp('8:00am')} - #{event.time_end.stamp('8:00am')}
+            td = link_to 'Edit', edit_event_path(event)
+  - else
+    h5 This customer has no Appointments

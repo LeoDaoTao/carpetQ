@@ -1,0 +1,41 @@
+# == Schema Information
+#
+# Table name: labels
+#
+#  id            :integer          not null, primary key
+#  name          :string
+#  top_margin    :decimal(, )
+#  bottom_margin :decimal(, )
+#  left_margin   :decimal(, )
+#  right_margin  :decimal(, )
+#  columns       :integer
+#  rows          :integer
+#  column_gutter :decimal(, )
+#  row_gutter    :decimal(, )
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  top_margin: 9.99
+  bottom_margin: 9.99
+  left_margin: 9.99
+  right_margin: 9.99
+  columns: 1
+  rows: 1
+  column_gutter: 9.99
+  row_gutter: 9.99
+
+two:
+  name: MyString
+  top_margin: 9.99
+  bottom_margin: 9.99
+  left_margin: 9.99
+  right_margin: 9.99
+  columns: 1
+  rows: 1
+  column_gutter: 9.99
+  row_gutter: 9.99

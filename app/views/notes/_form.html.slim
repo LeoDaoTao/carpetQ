@@ -1,0 +1,12 @@
+br
+.row
+  .col.s12
+    = simple_form_for @note do |f|
+      .col.s12
+        label Status
+        = f.input :status, label: false, collection: Note.statuses.keys.to_a
+      .input-field.col.s12
+        = f.input :note_text, input_html: { class: 'materialize-textarea' }
+      .col.s12.right-align
+        .section
+          = f.submit class: "btn waves-effect waves-light"

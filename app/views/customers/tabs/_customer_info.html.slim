@@ -1,0 +1,26 @@
+#customer-info.col.s12 
+  .section
+    h5.mdi-action-account-circle.col.s12 #{@customer.first_name} #{@customer.last_name}
+    - if @customer.company_name.present?
+      h5.mdi-action-account-balance.col.s12  = @customer.company_name
+  - @customer.phones.each do |phone|
+    - if phone.mobile?
+      h5.mdi-hardware-phone-android.col.s12 = phone.label.titleize
+    - else
+      h5.mdi-communication-call.col.s12 = phone.label.titleize
+    p.col.s12 #{tel_to(number_to_phone(phone.number, area_code: true))} #{textable(phone.textable?)}
+  - if @customer.email.present?
+      h5.mdi-communication-email.col.s12 Email
+      p.cols.s12 = mail_to @customer.email
+  .section
+    h5.mdi-action-home.col.s12 Address
+    address.col.s12
+      p  #{@customer.address}, #{@customer.city}, #{@customer.state} #{@customer.zip}
+    - if @customer.note.present?
+      h5.mdi-action-class Note
+      p = @customer.note
+  .section.col.s12
+    = link_to 'Edit Customer', edit_customer_path(@customer), class: 'btn'
+    - if @customer.deletable?
+      = link_to 'Delete Customer', @customer, class: 'btn red',
+                method: :delete, data: { confirm: 'Are you sure?' }
