@@ -8,8 +8,7 @@ Example Ruby on Rails Scheduling Application. Extracted from a production app, w
  * PDF Generation
 
 ### Calendar Screen
-![calendar](https://user-images.githubusercontent.com/843024/209851503-1b07126c-f6d7-429f-8f55-49292924e0af.png)
-
+![calendar](https://user-images.githubusercontent.com/843024/209852281-d9a8be14-8b7a-42eb-84cc-b62fb6bc0b3d.png)
 
 ### Customer Screen
 ![customers](https://user-images.githubusercontent.com/843024/206945187-d6d6262c-5351-4b8d-8a0b-a65e5c150cf2.png)
