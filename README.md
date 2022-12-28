@@ -1,6 +1,6 @@
 # carpetQ
 
-Example Ruby on Rails Scheduling Application. Extracted from a production app, with modifications
+Example Ruby on Rails Scheduling Application. Extracted from a production app.
 
 ### Features
  * Automated Text Message Reminders via Twilio API
